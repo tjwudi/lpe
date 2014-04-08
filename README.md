@@ -35,26 +35,33 @@ If `window.define` is not detected, standalone version of Lpe will be adopted (i
 ### API
 
 #### $P.deferred()
-
-- Functionality: Generate a deferred object, which
-- Returns: a deferred object `d`.  
+Generate a deferred object, which will be used to configure the promise object.
 
 ```
 var d = $P.deferred();
 ```
 
 #### d.resolve()
-#### d.fail()
-#### d.notify(payload)
-#### d.promise()
+Notify the promise object that the job is done.
 
-- Functionality: Returns the promise object
-- Returns: a promise object `p`
+#### d.fail()
+Notify the promise object that the job failed.
+
+#### d.notify(payload)
+Update the job information according to progress, the `payload` object can be any information you want to deliever to the promise object.
+
+#### d.promise()
+Returns the promise object
 
 ```
 var p = d.promise();
 ```
 
-#### p.onResolve([resolveFns])
-#### p.onFail([failFns])
-#### p.onNotify([notifyFns])
+#### p.onResolve(resolveFns)
+Functions to be executed when the promise is resolved. `resolveFns` can be a single function, or an array of functions.
+
+#### p.onFail(failFns)
+Functions to be executed when the job failed. `failFns` can be a single function, or an array of functions.
+
+#### p.onNotify(notifyFns)
+Functions to be executed when the job's information is updated. `notifyFns` can be a single function, or an array of functions.
